@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SDG 7 — Affordable & Clean Energy (Community Guide)</title>
+  <meta name="description" content="A community-friendly, one-page guide to UN SDG 7, the economic benefits of clean energy, and how engineering helps—supported by reliable sources." />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.90);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1120px;
+      --accent1: #38bdf8; /* sky */
+      --accent2: #34d399; /* green */
+      --accent3: #a78bfa; /* violet */
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(56,189,248,.18), transparent 55%),
+        radial-gradient(900px 600px at 85% 20%, rgba(167,139,250,.16), transparent 55%),
+        radial-gradient(900px 600px at 60% 95%, rgba(52,211,153,.14), transparent 55%),
+        linear-gradient(180deg, #070b14 0%, var(--bg) 50%, #060a12 100%);
+      overflow-x: hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .wrap{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    /* Phone-friendly wrapper padding */
+    @media (max-width: 520px){
+      .wrap{ width: calc(100% - 28px); }
+    }
+
+    /* Top nav */
+    .nav{
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(7,11,20,.62);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0;
+      gap: 12px;
+    }
+    .brand{
+      display: flex; align-items: center; gap: 10px; font-weight: 780;
+      letter-spacing: .2px;
+      min-width: 0;
+    }
+    .brand-title{
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 52vw;
+    }
+    .badge{
+      width: 34px; height: 34px; border-radius: 12px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, rgba(56,189,248,.9), rgba(52,211,153,.85));
+      box-shadow: 0 10px 30px rgba(56,189,248,.15);
+      border: 1px solid rgba(255,255,255,.16);
+      flex: 0 0 auto;
+    }
+    .navlinks{
+      display: flex; flex-wrap: wrap; justify-content: flex-end;
+      gap: 8px;
+    }
+    .pill{
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .pill:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22); }
+    .pill.active{ color: var(--text); background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.26); }
+
+    /* Phone nav: make it scroll instead of wrapping weird */
+    @media (max-width: 900px){
+      .nav-inner{ align-items: flex-start; }
+      .navlinks{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+        padding-bottom: 2px;
+      }
+      .navlinks::-webkit-scrollbar{ display: none; }
+    }
+
+    /* Cards */
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* Hero */
+    header.hero{ padding: 64px 0 28px; }
+    .hero-grid{
+      display: grid; gap: 18px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      header.hero{ padding: 52px 0 22px; }
+    }
+
+    .hero-main{
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(800px 380px at 30% 10%, rgba(56,189,248,.22), transparent 60%),
+        radial-gradient(700px 420px at 85% 60%, rgba(52,211,153,.18), transparent 60%),
+        radial-gradient(520px 360px at 20% 85%, rgba(167,139,250,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-main > *{ position: relative; z-index: 1; }
+
+    .kicker{
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12.5px; color: var(--muted);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    .dot{
+      width: 9px; height: 9px; border-radius: 99px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(56,189,248,.10);
+    }
+
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.07;
+      letter-spacing: -.8px;
+    }
+
+    .sub{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 72ch;
+    }
+
+    .cta-row{ display:flex; flex-wrap: wrap; gap: 10px; align-items:center; }
+
+    .btn{
+      display:inline-flex; align-items:center; gap: 10px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      font-weight: 680;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.26); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(56,189,248,.95), rgba(52,211,153,.9));
+      border-color: rgba(255,255,255,.18);
+      color: #041018;
+    }
+
+    /* Hero images */
+    .hero-media{
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+    @media (max-width: 650px){
+      .hero-media{ grid-template-columns: 1fr; }
+    }
+
+    .img-card{
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      position: relative;
+      min-height: 170px;
+    }
+    .img-card img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      filter: saturate(1.05);
+    }
+    .img-overlay{
+      position:absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.55) 100%);
+      pointer-events: none;
+    }
+    .img-caption{
+      position:absolute; left: 12px; bottom: 10px; right: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,.90);
+      line-height: 1.35;
+      text-shadow: 0 10px 28px rgba(0,0,0,.55);
+    }
+    .img-caption small{ color: rgba(255,255,255,.70); display:block; margin-top: 3px; }
+
+    .hero-side{ padding: 18px; display: grid; gap: 12px; grid-template-rows: auto 1fr; }
+    .mini-title{ font-weight: 780; letter-spacing: -.2px; }
+    .mini{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .mini p{ margin: 6px 0 0; color: var(--muted); line-height: 1.5; font-size: 13.5px; }
+
+    .stats{
+      display:grid; gap: 12px;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 10px;
+    }
+    .stat{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .stat .num{ font-size: 18px; font-weight: 820; letter-spacing: -.2px; }
+    .stat .lbl{ color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+
+    @media (max-width: 520px){
+      .hero-main{ padding: 18px; }
+      .hero-side{ padding: 16px; }
+      .stats{ grid-template-columns: 1fr; }
+    }
+
+    /* Sections */
+    section{ padding: 24px 0; }
+    .section-head{ display:flex; align-items:flex-end; justify-content: space-between; gap: 18px; margin-bottom: 12px; }
+    h2{ margin: 0; font-size: 24px; letter-spacing: -.3px; }
+    .lead{ margin: 6px 0 0; color: var(--muted); line-height: 1.6; max-width: 88ch; }
+
+    .grid-3{
+      display:grid; gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){ .grid-3{ grid-template-columns: 1fr; } }
+
+    .tile{
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .tile h3{ margin: 0 0 8px; font-size: 16px; letter-spacing: -.2px; }
+    .tile p{ margin: 0; color: var(--muted); line-height: 1.55; font-size: 14px; }
+
+    .icon{
+      width: 38px; height: 38px; border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      margin-bottom: 10px;
+    }
+
+    /* Steps */
+    .steps{ margin-top: 14px; display:grid; gap: 12px; }
+    .step{
+      display:flex; gap: 12px; align-items:flex-start;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .step .n{
+      min-width: 34px; height: 34px; border-radius: 12px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 820;
+      background: linear-gradient(135deg, rgba(167,139,250,.85), rgba(56,189,248,.78));
+      color: #071018;
+      border: 1px solid rgba(255,255,255,.16);
+      flex: 0 0 auto;
+    }
+    .step b{ display:block; margin-bottom: 4px; }
+    .step span{ color: var(--muted); line-height: 1.55; font-size: 14px; }
+
+    /* Inline citations */
+    sup.cite{
+      font-size: 12px;
+      color: rgba(255,255,255,.78);
+      margin-left: 2px;
+    }
+    sup.cite a{
+      color: rgba(255,255,255,.78);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Section images */
+    .section-media{
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 650px){
+      .section-media{ grid-template-columns: 1fr; }
+    }
+
+    /* Sources */
+    .sources{
+      margin-top: 12px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .sources ol{ margin: 10px 0 0 18px; color: var(--muted); line-height: 1.65; }
+    .sources li{ margin: 10px 0; }
+    .sources a{ text-decoration: underline; text-underline-offset: 3px; word-break: break-word; }
+
+    footer{
+      padding: 26px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin-top: 24px;
+    }
+    .footer-row{ display:flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    /* Back to top */
+    .topbtn{
+      position: fixed;
+      right: 16px; bottom: 16px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(7,11,20,.60);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      box-shadow: 0 16px 50px rgba(0,0,0,.35);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .2s ease, transform .2s ease, background .15s ease, border-color .15s ease;
+      pointer-events: none;
+      font-weight: 680;
+    }
+    .topbtn.show{ opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .topbtn:hover{ background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.24); }
+
+    .smallprint{ font-size: 12.5px; color: rgba(255,255,255,.60); line-height: 1.55; }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <div class="badge" aria-hidden="true"></div>
+        <div class="brand-title">SDG 7 — Affordable & Clean Energy</div>
+      </a>
+      <div class="navlinks" id="navlinks" aria-label="Site sections">
+        <a class="pill" href="#goal">Goal</a>
+        <a class="pill" href="#economy">Economy</a>
+        <a class="pill" href="#engineering">Engineering</a>
+        <a class="pill" href="#local">Local Actions</a>
+        <a class="pill" href="#sources">Sources</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="card hero-main">
+        <div class="kicker"><span class="dot"></span> Audience: Community members • One-page artifact • IEEE citations</div>
+        <h1>Affordable, Clean Energy Helps Communities Thrive</h1>
+        <p class="sub">
+          UN Sustainable Development Goal 7 (SDG 7) is about ensuring people have access to
+          <b>affordable, reliable, sustainable, and modern energy</b>.<sup class="cite"><a href="#ref-1">[1]</a></sup>
+          This page explains SDG 7, the broad economic benefits of achieving it, and how engineering helps deliver real solutions
+          through renewable energy, efficiency, and modern electric grids.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="#goal">Start reading</a>
+          <a class="btn" href="#sources">See sources</a>
+        </div>
+
+        <div class="hero-media" aria-label="Energy photos">
+          <!-- Images from Unsplash (free to use). These are just visuals; your factual claims are cited with sources below. -->
+          <div class="img-card">
+            <img
+              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1400&q=80"
+              alt="Solar panels in sunlight"
+              loading="lazy"
+            />
+            <div class="img-overlay"></div>
+            <div class="img-caption">
+              Solar power can lower long-term energy costs and emissions.
+              <small>Photo: Unsplash</small>
+            </div>
+          </div>
+
+          <div class="img-card">
+            <img
+              src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80"
+              alt="Wind turbines on a hill"
+              loading="lazy"
+            />
+            <div class="img-overlay"></div>
+            <div class="img-caption">
+              Wind energy infrastructure relies on civil + structural engineering.
+              <small>Photo: Unsplash</small>
+            </div>
+          </div>
+        </div>
+
+        <p class="smallprint" style="margin-top:12px;">
+          Designed for phones: scroll-friendly sections, readable cards, and easy navigation.
+        </p>
+      </div>
+
+      <div class="card hero-side">
+        <div class="mini">
+          <div class="mini-title">Why energy matters</div>
+          <p>
+            Energy supports homes, schools, hospitals, and essential services like clean water.
+            Global SDG 7 tracking focuses on electricity access, clean cooking, renewable energy, and energy efficiency.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+
+        <div class="stats" aria-label="Key takeaways">
+          <div class="stat">
+            <div class="num">Access</div>
+            <div class="lbl">Modern energy improves safety, health, and opportunity.<sup class="cite"><a href="#ref-1">[1]</a></sup></div>
+          </div>
+          <div class="stat">
+            <div class="num">Stability</div>
+            <div class="lbl">Reliable grids reduce outages and disruption.<sup class="cite"><a href="#ref-2">[2]</a></sup></div>
+          </div>
+          <div class="stat">
+            <div class="num">Jobs</div>
+            <div class="lbl">Renewables support millions of jobs worldwide.<sup class="cite"><a href="#ref-4">[4]</a></sup></div>
+          </div>
+          <div class="stat">
+            <div class="num">Health</div>
+            <div class="lbl">Cleaner air reduces disease risk and early deaths.<sup class="cite"><a href="#ref-5">[5]</a></sup></div>
+          </div>
+        </div>
+
+        <div class="img-card" style="min-height: 180px;">
+          <img
+            src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1400&q=80"
+            alt="Power lines and sunset sky"
+            loading="lazy"
+          />
+          <div class="img-overlay"></div>
+          <div class="img-caption">
+            Modern grids improve reliability and help integrate renewables.
+            <small>Photo: Unsplash</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION: GOAL -->
+  <section id="goal">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>1) What SDG 7 Is</h2>
+          <p class="lead">
+            SDG 7’s mission is “energy for all”—energy that is <b>affordable</b>, <b>reliable</b>, <b>sustainable</b>, and <b>modern</b>.<sup class="cite"><a href="#ref-1">[1]</a></sup>
+            Progress is tracked globally across access, renewables, and efficiency.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="tile">
+          <div class="icon" aria-hidden="true">⚡</div>
+          <h3>Affordable & Reliable</h3>
+          <p>
+            Energy that families can count on and budget for—reducing price shocks and service interruptions.<sup class="cite"><a href="#ref-1">[1]</a></sup>
+          </p>
+        </div>
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🌱</div>
+          <h3>Clean & Sustainable</h3>
+          <p>
+            Increased renewables and cleaner systems to reduce pollution and long-term climate risk.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🏗️</div>
+          <h3>Modern Infrastructure</h3>
+          <p>
+            Strong grids and efficient buildings so energy is delivered consistently and used wisely.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: ECONOMY -->
+  <section id="economy">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>2) Broad Economic Implications</h2>
+          <p class="lead">
+            Clean, reliable energy supports local economies by improving productivity, stabilizing costs, creating jobs,
+            and reducing health burdens linked to air pollution.<sup class="cite"><a href="#ref-2">[2]</a></sup><sup class="cite"><a href="#ref-5">[5]</a></sup>
+          </p>
+        </div>
+      </div>
+
+      <div class="section-media" aria-label="Economy images">
+        <div class="img-card">
+          <img
+            src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1400&q=80"
+            alt="Engineer reviewing plans with equipment"
+            loading="lazy"
+          />
+          <div class="img-overlay"></div>
+          <div class="img-caption">
+            Infrastructure projects create jobs across design, construction, and maintenance.
+            <small>Photo: Unsplash</small>
+          </div>
+        </div>
+
+        <div class="img-card">
+          <img
+            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=80"
+            alt="Construction site with cranes"
+            loading="lazy"
+          />
+          <div class="img-overlay"></div>
+          <div class="img-caption">
+            Energy upgrades can strengthen local economic resilience.
+            <small>Photo: Unsplash</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🏪</div>
+          <h3>More dependable local business</h3>
+          <p>
+            Reliable power means fewer lost hours and more predictable operations.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+        <div class="tile">
+          <div class="icon" aria-hidden="true">💼</div>
+          <h3>Jobs & workforce growth</h3>
+          <p>
+            Renewable energy employment has reached tens of millions globally—across manufacturing, construction, and operations.<sup class="cite"><a href="#ref-4">[4]</a></sup>
+          </p>
+        </div>
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🏥</div>
+          <h3>Lower health burdens</h3>
+          <p>
+            Air pollution is linked to major health impacts worldwide, including millions of premature deaths annually.<sup class="cite"><a href="#ref-5">[5]</a></sup>
+          </p>
+        </div>
+      </div>
+
+      <div class="steps" aria-label="Economic chain of effects">
+        <div class="step">
+          <div class="n">1</div>
+          <div>
+            <b>Reliable power → fewer disruptions</b>
+            <span>Stable electricity supports critical services and reduces economic losses from outages.<sup class="cite"><a href="#ref-2">[2]</a></sup></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div>
+            <b>Efficiency → lower waste</b>
+            <span>Using less energy for the same work can lower bills and reduce strain on power systems.<sup class="cite"><a href="#ref-2">[2]</a></sup><sup class="cite"><a href="#ref-6">[6]</a></sup></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div>
+            <b>Clean energy → healthier air</b>
+            <span>Reducing pollution sources improves health outcomes and reduces broader social costs.<sup class="cite"><a href="#ref-5">[5]</a></sup></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: ENGINEERING -->
+  <section id="engineering">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>3) How Engineering Helps Achieve SDG 7</h2>
+          <p class="lead">
+            Engineering turns energy goals into real systems people can use—designing renewable generation,
+            strengthening electric grids, and improving energy efficiency in buildings and infrastructure.<sup class="cite"><a href="#ref-2">[2]</a></sup><sup class="cite"><a href="#ref-1">[1]</a></sup>
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="tile">
+          <div class="icon" aria-hidden="true">☀️</div>
+          <h3>Solar + site/structural design</h3>
+          <p>
+            Engineers design foundations, wind loads, drainage, and layouts for solar farms and rooftops so systems last and withstand weather.
+          </p>
+        </div>
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🌬️</div>
+          <h3>Wind + infrastructure</h3>
+          <p>
+            Wind projects require engineering for towers, foundations, transportation routes, and (offshore) marine construction.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🔋</div>
+          <h3>Storage + modern grids</h3>
+          <p>
+            Batteries, microgrids, and smarter controls help keep electricity reliable as more renewables connect to the grid.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+      </div>
+
+      <div class="steps" aria-label="Engineering in action">
+        <div class="step">
+          <div class="n">A</div>
+          <div>
+            <b>Design for reliability</b>
+            <span>Protection systems, redundancy, and standards help communities depend on power systems.<sup class="cite"><a href="#ref-2">[2]</a></sup></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">B</div>
+          <div>
+            <b>Design for efficiency</b>
+            <span>Better building envelopes, HVAC, lighting, and controls reduce waste—supporting SDG 7 efficiency targets.<sup class="cite"><a href="#ref-2">[2]</a></sup><sup class="cite"><a href="#ref-6">[6]</a></sup></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">C</div>
+          <div>
+            <b>Design for access</b>
+            <span>Planning grid extensions and distributed systems supports affordability and reliability goals.<sup class="cite"><a href="#ref-1">[1]</a></sup><sup class="cite"><a href="#ref-3">[3]</a></sup></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: LOCAL ACTIONS -->
+  <section id="local">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>What Communities Can Do</h2>
+          <p class="lead">
+            SDG 7 is global, but local choices add up. These steps align with SDG 7’s focus on access, renewables, and efficiency.<sup class="cite"><a href="#ref-1">[1]</a></sup><sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🏠</div>
+          <h3>Improve home efficiency</h3>
+          <p>
+            Weatherization, insulation, efficient HVAC, and LEDs can reduce bills and demand on the grid.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🏫</div>
+          <h3>Upgrade public buildings</h3>
+          <p>
+            Schools and city facilities can cut operating costs through retrofits and smart controls—freeing budgets for services.
+          </p>
+        </div>
+        <div class="tile">
+          <div class="icon" aria-hidden="true">🤝</div>
+          <h3>Support clean energy programs</h3>
+          <p>
+            Community solar, rooftop solar, and grid upgrades expand cleaner options and reliability.<sup class="cite"><a href="#ref-2">[2]</a></sup>
+          </p>
+        </div>
+      </div>
+
+      <div class="mini" style="margin-top:14px;">
+        <div class="mini-title">Community takeaway</div>
+        <p>
+          Clean energy can improve affordability, reliability, and public health when projects are designed responsibly and supported by strong engineering and planning.<sup class="cite"><a href="#ref-1">[1]</a></sup><sup class="cite"><a href="#ref-5">[5]</a></sup>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: SOURCES -->
+  <section id="sources">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Sources (IEEE Style)</h2>
+          <p class="lead">
+            Citations appear inline as numbered brackets (e.g., <b>[1]</b>) and are listed here.
+          </p>
+        </div>
+      </div>
+
+      <div class="sources">
+        <div class="mini-title">Reference List</div>
+        <ol>
+          <li id="ref-1">
+            United Nations, “Goal 7: Affordable and Clean Energy,” <i>UN SDGs</i>. Available:
+            <a href="https://sdgs.un.org/goals/goal7" target="_blank" rel="noopener">https://sdgs.un.org/goals/goal7</a>
+            (accessed Feb. 22, 2026).
+          </li>
+          <li id="ref-2">
+            International Energy Agency (IEA), “Tracking SDG7: The Energy Progress Report 2025.” Available:
+            <a href="https://www.iea.org/reports/tracking-sdg7-the-energy-progress-report-2025" target="_blank" rel="noopener">https://www.iea.org/reports/tracking-sdg7-the-energy-progress-report-2025</a>
+            (accessed Feb. 22, 2026).
+          </li>
+          <li id="ref-3">
+            World Bank Open Knowledge Repository, “Tracking SDG 7: The Energy Progress Report (publication record).” Available:
+            <a href="https://openknowledge.worldbank.org/entities/publication/70d430a1-0e78-5613-8447-f61454fcf317" target="_blank" rel="noopener">https://openknowledge.worldbank.org/entities/publication/70d430a1-0e78-5613-8447-f61454fcf317</a>
+            (accessed Feb. 22, 2026).
+          </li>
+          <li id="ref-4">
+            International Renewable Energy Agency (IRENA), “Renewable energy and jobs: Annual review 2023.” Available:
+            <a href="https://www.irena.org/Digital-Report/Renewable-energy-and-jobs-Annual-review-2023" target="_blank" rel="noopener">https://www.irena.org/Digital-Report/Renewable-energy-and-jobs-Annual-review-2023</a>
+            (accessed Feb. 22, 2026).
+          </li>
+          <li id="ref-5">
+            World Health Organization (WHO), “Ambient (outdoor) air pollution,” <i>WHO Fact Sheet</i> (Oct. 24, 2024). Available:
+            <a href="https://www.who.int/news-room/fact-sheets/detail/ambient-%28outdoor%29-air-quality-and-health" target="_blank" rel="noopener">https://www.who.int/news-room/fact-sheets/detail/ambient-%28outdoor%29-air-quality-and-health</a>
+            (accessed Feb. 22, 2026).
+          </li>
+          <li id="ref-6">
+            Sustainable Energy for All (SEforALL), “Sustainable Development Goal 7 (SDG7).” Available:
+            <a href="https://www.seforall.org/our-work/sustainable-development-goal-7-sdg7" target="_blank" rel="noopener">https://www.seforall.org/our-work/sustainable-development-goal-7-sdg7</a>
+            (accessed Feb. 22, 2026).
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>© <span id="year"></span> • SDG 7 Community Artifact</div>
+      <div>Single-file website • Mobile-friendly • Inline IEEE citations</div>
+    </div>
+  </footer>
+
+  <button class="topbtn" id="topbtn" aria-label="Back to top">↑ Top</button>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Back to top button
+    const topBtn = document.getElementById("topbtn");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 650) topBtn.classList.add("show");
+      else topBtn.classList.remove("show");
+    });
+    topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    // Active section highlight in nav
+    const sections = ["goal","economy","engineering","local","sources"].map(id => document.getElementById(id));
+    const links = [...document.querySelectorAll("#navlinks a")];
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+      });
+    }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+
+    sections.forEach(s => obs.observe(s));
+  </script>
+</body>
+</html>
